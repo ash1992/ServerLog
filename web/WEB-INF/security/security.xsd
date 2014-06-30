@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:annotation>
+        <xs:documentation xml:lang="ru">
+            Описание структуры файла users.xml
+        </xs:documentation>
+    </xs:annotation>
+    
+    <xs:element name="users" type="users">
+        <xs:annotation>
+            <xs:documentation xml:lang="ru">
+                Главный элемент схемы. Описывает пользователей
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:complexType name="users">
+        <xs:sequence>
+            <xs:element name="user" type="user" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Описывает пользователя
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="login" type="xs:string" maxOccurs="1" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Имя пользователя
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="password" type="xs:string" maxOccurs="1" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Пароль пользователя в формате md5
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="level" maxOccurs="1" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Уровень допуска пользователя
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="User"/>
+                        <xs:enumeration value="Moderator"/>
+                        <xs:enumeration value="Admin"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                
+            </xs:element>
+            <xs:element name="description" type="xs:string" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Описание пользователя
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

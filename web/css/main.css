@@ -1,0 +1,118 @@
+body
+{
+    width: 1024px;
+    margin: 20px auto;
+    font: 1em/1.4 "Calibri Light", "Arial", sans-serif;
+}
+
+a:link,a:active,a:visited
+{
+    color: #3B678D;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    text-decoration: none;
+    color: black;
+    
+}
+
+.logo
+{
+    text-align: center;
+    background-color: #FEE;
+    padding: 10px 10px;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border: 1px solid #FBB;
+}
+
+table
+{
+    border-collapse:collapse;
+    border: 1px solid #AAA;
+}
+
+table tr th
+{
+    background-color: #FEE;
+    padding: 10px 0px;
+}
+
+table tr th.group
+{
+    background-color: #FBB;
+    padding: 20px 0px;
+    font-size: 18px;
+}
+
+table tr td
+{
+    padding: 10px;
+    background-color: #FAFAFA;
+}
+
+table .multicheck
+{
+    width: 24px;
+    text-align: center;
+}
+
+hr
+{
+    height: 1px;
+    margin: 8px 0px;
+    border: none;
+    border-top: 1px solid #909090;
+}
+
+
+.log
+{
+    padding: 10px;
+    background-color: #FAFAFA;
+    margin: 10px 0px;
+    border: 1px solid #AAA;
+}
+
+.log .title
+{
+    padding: 10px 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #AAA;
+}
+
+.log.INFO
+{
+    color: #555;
+}
+
+.log.SEVERE
+{
+    background-color: #FBB;
+}
+
+.log.WARNING
+{
+    background-color: #DFD;
+}
+
+.log.CONTEXT
+{
+    font-size: 1.3em;
+}
+
+.log init
+{
+    text-decoration: underline;
+}
+
+.commands
+{
+    margin: 20px 0px;
+    background-color: #FBB;
+    padding: 10px 10px;
+    border: 1px solid #909090;
+}

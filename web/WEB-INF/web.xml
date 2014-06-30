@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app metadata-complete="true" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!--  Сервлеты   -->
+     <!-- /////////////////////////////////////////////////////////////////// -->
+    <servlet>
+        <description>Сервлет главной страницы сайта</description>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>com.log.servlets.IndexServlet</servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+    <servlet>
+        <description>Сервлет страницы с содержимым лога</description>
+        <servlet-name>readLog</servlet-name>
+        <servlet-class>com.log.servlets.ReadLogServlet</servlet-class> 
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>readLog</servlet-name>
+        <url-pattern>/readLog/*</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+    <servlet>
+        <description>Сервлет удаления файла лога</description>
+        <servlet-name>DeleteLogServlet</servlet-name>
+        <servlet-class>com.log.servlets.DeleteLogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteLogServlet</servlet-name>
+        <url-pattern>/deleteLog/*</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+    <servlet>
+        <description>Сервлет удаления нескольких файлов логов</description>
+        <servlet-name>DeleteLogsServlet</servlet-name>
+        <servlet-class>com.log.servlets.DeleteLogsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteLogsServlet</servlet-name>
+        <url-pattern>/deleteLogs/*</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+    <servlet>
+        <description>Сервлет создания пользователя</description>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>com.log.servlets.CreateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/createUser/*</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+    <servlet>
+        <description>Сервлет авторизации пользователя</description>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.log.servlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login/*</url-pattern>
+    </servlet-mapping>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Файлы index -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <welcome-file-list>
+        <welcome-file>Index</welcome-file>
+    </welcome-file-list>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Ошибки -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/404.jsp</location>
+    </error-page>
+    <!-- -->
+    <error-page>
+        <error-code>401</error-code>
+        <location>/errors//401.jsp</location>
+    </error-page>
+    
+    <!-- -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errors/500.jsp</location>
+    </error-page>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Настройки jsp -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <jsp-config>
+        <jsp-property-group>
+            <description>Добавление верха и низа к страницам jsp</description>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-prelude>/templates/header.jsp</include-prelude>
+            <include-coda>/templates/footer.jsp</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Listeners -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <listener>
+        <description>Инициализирует переменные контекста.</description>
+        <listener-class>com.log.context.InitListener</listener-class>
+    </listener>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Context Parametres -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <context-param>
+        <param-name>version</param-name>
+        <param-value>1.0</param-value>
+    </context-param>
+    <!--
+    <context-param>
+        <param-name>userList</param-name>
+        <param-value>users.xml</param-value>
+    </context-param>
+   
+    <context-param>
+        <param-name>userListSchema</param-name>
+        <param-value>security.xsd</param-value>
+    </context-param> -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Фильтры -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <filter>
+        <description>
+            ContextFilter  
+        </description>
+        <display-name>ContextFilter </display-name>
+        <filter-name>ContextFilter </filter-name>
+        <filter-class>com.log.context.filters.ContextFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ContextFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <!-- -->
+    <filter>
+        <description>
+           SecurityFilter  
+        </description>
+        <display-name>SecurityFilter </display-name>
+        <filter-name>SecurityFilter </filter-name>
+        <filter-class>com.log.context.filters.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <!-- Other -->
+    <!-- /////////////////////////////////////////////////////////////////// -->
+    <display-name>Server Log Manager</display-name>
+</web-app>
